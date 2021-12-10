@@ -13,7 +13,7 @@ class Vaccine:
     def get(self):
         cm = ConnectionManager()
         conn = cm.create_connection()
-        cursor = conn.cursor()
+        cursor = conn.cursor(as_dict=True)
 
         get_vaccine = "SELECT Name, Doses FROM Vaccines WHERE Name = %s"
         try:

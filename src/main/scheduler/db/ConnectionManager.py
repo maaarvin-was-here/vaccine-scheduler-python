@@ -5,10 +5,14 @@ import os
 class ConnectionManager:
 
     def __init__(self):
-        self.server_name = os.getenv("Server")
-        self.db_name = os.getenv("DBName")
-        self.user = os.getenv("UserID")
-        self.password = os.getenv("Password")
+        #self.server_name = os.getenv("Server")
+        #self.db_name = os.getenv("DBName")
+        #self.user = os.getenv("UserID")
+        #self.password = os.getenv("Password")
+        self.server_name = "mlin586.database.windows.net"
+        self.db_name = "Homework 3"
+        self.user = "mlin586@mlin586"
+        self.password = "Flygonrules123"
         self.conn = None
 
     def create_connection(self):

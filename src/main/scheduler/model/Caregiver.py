@@ -19,13 +19,15 @@ class Caregiver:
         conn = cm.create_connection()
         cursor = conn.cursor(as_dict=True)
 
+        util = Util()
+
         get_caregiver_details = "SELECT Salt, Hash FROM Caregivers WHERE Username = %s"
         try:
             cursor.execute(get_caregiver_details, self.username)
             for row in cursor:
                 curr_salt = row['Salt']
                 curr_hash = row['Hash']
-                calculated_hash = Util.generate_hash(self.password, curr_salt)
+                calculated_hash = util.generate_hash(self.password, curr_salt)
                 if not curr_hash == calculated_hash:
                     cm.close_connection()
                     return None
@@ -72,7 +74,7 @@ class Caregiver:
         conn = cm.create_connection()
         cursor = conn.cursor()
 
-        add_availability = "INSERT INTO Availabilities VALUES (%s , %s)"
+        add_availability = "INSERT INTO Booked (Username, Time) VALUES (%s , %s)"
         try:
             cursor.execute(add_availability, (d, self.username))
             # you must call commit() to persist your data if you don't set autocommit to True
